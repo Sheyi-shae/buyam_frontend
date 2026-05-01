@@ -16,7 +16,7 @@ const stars = [1,2,3,4,5];
 interface VendorReviewsProps {
   vendor: UserReview[]
   vendorPublicId?: string;
-  vendorId?: string;
+  vendorId?: number;
   
 }
 
