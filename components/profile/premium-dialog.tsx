@@ -24,7 +24,7 @@ export default function PremiumDialog({user}: {user: User}) {
     }
     // verify paystack payment
       // Separate verification function (non-async for Paystack callback)
-  const verifyPayment = (reference: string) => {
+  const verifyPayment = async(reference: string) => {
     try {
       apiPrivate.get(`/payment/verify/${reference}`)
       
@@ -52,7 +52,7 @@ export default function PremiumDialog({user}: {user: User}) {
       const initResponse = await apiPrivate.post("/payment/initialize", {
         publicId: user.publicId,
         })
-      const {data,amount} = await initResponse.data;
+      const {data,amount} =  initResponse.data;
 
      
 
