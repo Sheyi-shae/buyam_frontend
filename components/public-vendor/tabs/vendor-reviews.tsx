@@ -1,19 +1,15 @@
 "use client"
 
-import { Star, ThumbsUp, Flag, Reply, UserCheck, Send } from "lucide-react"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { useAuthStore } from "@/stores/auth-stores"
-import { useQueryClient } from "@tanstack/react-query"
-import { useMemo, useState } from "react"
-import apiPrivate, { parseErrorMessage } from "@/utils/api-private"
-import { UserReview } from "@/types/users"
-import { toast } from "sonner"
-import { timeAgo } from "@/utils/date-format"
 import { Textarea } from "@/components/ui/textarea"
-import Link from "next/link"
+import { useAuthStore } from "@/stores/auth-stores"
+import { UserReview } from "@/types/users"
+import apiPrivate, { parseErrorMessage } from "@/utils/api-private"
+import { useQueryClient } from "@tanstack/react-query"
+import { Star } from "lucide-react"
+import { useMemo, useState } from "react"
+import { toast } from "sonner"
 import VendorRatingSummary from "../vendor-rating-summary"
-import { Input } from "@/components/ui/input"
 import VendorReviewsList from "../vendor-reviews-list"
 
 const stars = [1,2,3,4,5];  
@@ -117,7 +113,7 @@ export default function VendorReviews({ vendor,vendorPublicId,vendorId }: Vendor
         {/* Rating Summary */}
         <VendorRatingSummary
           vendor={vendor}
-          vendorPublicId={vendorPublicId}
+          //vendorPublicId={vendorPublicId}
           averageRating={averageRating} />
       </div>
 

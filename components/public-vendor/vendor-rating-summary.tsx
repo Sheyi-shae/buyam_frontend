@@ -5,7 +5,8 @@ import { useMemo } from 'react';
 
 interface VendorRatingSummaryProps {
     vendor: UserReview[]
-    averageRating: number;
+  averageRating: number;
+  
 }
 export default function VendorRatingSummary({ vendor,  averageRating }: VendorRatingSummaryProps) {
     
