@@ -135,6 +135,37 @@ export interface ProductListing {
 
 }
 
+export interface ProductListingCard {
+   id: number
+  name: string    
+  price: number  
+  avatar: string[]    
+  description: string 
+  isPremium:boolean 
+  negotiable:  boolean 
+  isSold: boolean 
+  sellerPublicId:string
+  slug: string    
+  sellerId: number 
+  state: string
+  city: string
+  condition: string
+  seller: User
+  likes: ProductLike
+  views: number
+  
+  conversations: Conversation[] 
+  
+
+  subCategoryId:number
+  categoryId: number
+  subCategory:SubCategory
+  category:CategoryD
+
+  createdAt: Date
+  updatedAt: Date
+
+}
 export interface ProductLike {
   id: number;
   userId: number;

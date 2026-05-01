@@ -1,6 +1,6 @@
 "use client"
 
-import { Product, ProductListing } from "@/types/users"
+import { Product, ProductListing, ProductListingCard } from "@/types/users"
 import { timeAgo } from "@/utils/date-format"
 import { Clock, Heart, MapPin } from "lucide-react"
 import Image from "next/image"
@@ -22,7 +22,7 @@ const getConditionColor = (condition: string) => {
       return "bg-gray-100 text-gray-800"
   }
 }
-export default function ProductCard({ items }: { items: ProductListing[] }) {
+export default function ProductCard({ items }: { items: ProductListingCard[] }) {
     const { user } = useAuthStore()
     const toggleLike = (id: number) => {
       // Implement like toggle functionality here
