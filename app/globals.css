@@ -1,26 +1,520 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap');
 
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../lib/custom-css.css";
+@import '../lib/product-image-slider.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Buyam Light Marketplace Color System */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Background */
+  --background: #fafaf8;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+
+  /* Green Accent - Primary */
+  --primary: oklch(59.6% 0.145 163.225);
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f3;
+  --secondary-foreground: #1a1a1a;
+
+  /* Muted/Neutral */
+  --muted: #e8e8e6;
+  --muted-foreground: #666666;
+  --accent: oklch(59.6% 0.145 163.225);
+  --accent-foreground: #ffffff;
+
+  /* Utility */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0dc;
+  --input: #b4f7c3;
+  --ring: #2ecc71;
+
+  /* Chart colors */
+  --chart-1: #2ecc71;
+  --chart-2: #27ae60;
+  --chart-3: #229954;
+  --chart-4: #1e8449;
+  --chart-5: #186a3b;
+
+  /* Radius */
+  --radius: 0.625rem;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #2ecc71;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f3;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e0e0dc;
+  --sidebar-ring: #2ecc71;
+}
+
+.dark {
+  --background: #fafaf8;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #2ecc71;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f3;
+  --secondary-foreground: #1a1a1a;
+  --muted: #e8e8e6;
+  --muted-foreground: #666666;
+  --accent: #2ecc71;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0dc;
+  --input: #f5f5f3;
+  --ring: #2ecc71;
+  --chart-1: #2ecc71;
+  --chart-2: #27ae60;
+  --chart-3: #229954;
+  --chart-4: #1e8449;
+  --chart-5: #186a3b;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #2ecc71;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f3;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e0e0dc;
+  --sidebar-ring: #2ecc71;
 }
 
 @theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+ 
+
+/* product card */
+   .pcard-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          font-family: 'DM Sans', sans-serif;
+        }
+        .pcard-wrap {
+          opacity: 0;
+          animation: cardReveal 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+          text-decoration: none;
+        }
+        .pcard-wrap:nth-child(1) { animation-delay: 0.05s; }
+        .pcard-wrap:nth-child(2) { animation-delay: 0.12s; }
+        .pcard-wrap:nth-child(3) { animation-delay: 0.19s; }
+        .pcard-wrap:nth-child(4) { animation-delay: 0.26s; }
+        .pcard-wrap:nth-child(5) { animation-delay: 0.33s; }
+        .pcard-wrap:nth-child(6) { animation-delay: 0.40s; }
+        .pcard-wrap:nth-child(7) { animation-delay: 0.47s; }
+        .pcard-wrap:nth-child(8) { animation-delay: 0.54s; }
+        .pcard-wrap:nth-child(9) { animation-delay: 0.61s; }
+
+        .pcard {
+          background: var(--card, #fff);
+          border: 1.5px solid var(--border, #e0e0dc);
+          border-radius: 14px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          transition:
+            border-color 0.25s ease,
+            box-shadow   0.28s ease,
+            transform    0.28s cubic-bezier(0.22,1,0.36,1);
+          position: relative;
+        }
+        .pcard:hover {
+          border-color: var(--ring, #2ecc71);
+          box-shadow:
+            0 0 0 3px rgba(46,204,113,0.09),
+            0 16px 40px -12px rgba(46,204,113,0.18),
+            0 4px 12px -4px rgba(0,0,0,0.07);
+          transform: translateY(-5px);
+        }
+
+        /* Image area */
+        .pcard-img {
+          position: relative;
+          overflow: hidden;
+          aspect-ratio: 4/3;
+          background: var(--secondary, #f5f5f3);
+          flex-shrink: 0;
+        }
+        .pcard-img > * { height: 100%; width: 100%; object-fit: cover; }
+              
+        /* Seller chip — floats over image */
+        .pcard-seller {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          z-index: 10;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: rgba(255,255,255,0.92);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(255,255,255,0.6);
+          border-radius: 100px;
+          padding: 0.2rem 0.6rem;
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: var(--chart-3, #229954);
+          text-transform: uppercase;
+          white-space: nowrap;
+          max-width: calc(100% - 20px);
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .pcard-seller-dot {
+          width: 5px; height: 5px;
+          border-radius: 50%;
+          background: var(--ring, #2ecc71);
+          flex-shrink: 0;
+        }
+
+        /* Body */
+        .pcard-body {
+          padding: 1rem 1.1rem 1.15rem;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: 0;
+        }
+
+        .pcard-title {
+          font-family: 'Syne', sans-serif;
+          font-weight: 700;
+          font-size: 1rem;
+          line-height: 1.35;
+          color: var(--foreground, #1a1a1a);
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          min-height: 2.7rem;
+          margin: 0 0 0.75rem;
+          letter-spacing: -0.02em;
+          transition: color 0.2s ease;
+        }
+        .pcard:hover .pcard-title { color: var(--chart-5, #186a3b); }
+
+        /* Meta row */
+        .pcard-meta {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          margin-bottom: 0.9rem;
+        }
+        .pcard-meta-row {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.75rem;
+          color: var(--muted-foreground, #666);
+          font-weight: 400;
+        }
+        .pcard-meta-row svg {
+          color: var(--muted-foreground, #666);
+          flex-shrink: 0;
+          opacity: 0.7;
+        }
+
+        /* Divider */
+        .pcard-divider {
+          height: 1px;
+          background: var(--border, #e0e0dc);
+          margin: 0 0 0.9rem;
+        }
+
+        /* Footer */
+        .pcard-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          margin-top: auto;
+        }
+        .pcard-price {
+          font-family: 'Syne', sans-serif;
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--foreground, #1a1a1a);
+          letter-spacing: -0.03em;
+          line-height: 1;
+        }
+
+        /* CTA button */
+        .pcard-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--primary-foreground, #fff);
+          background: var(--ring, #2ecc71);
+          border: none;
+          border-radius: 100px;
+          padding: 0.45rem 0.9rem;
+          cursor: pointer;
+          text-decoration: none;
+          white-space: nowrap;
+          transition:
+            background 0.2s ease,
+            transform  0.22s cubic-bezier(0.34,1.56,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .pcard-cta:hover {
+          background: var(--chart-2, #27ae60);
+          transform: scale(1.05);
+          box-shadow: 0 4px 14px -3px rgba(46,204,113,0.45);
+        }
+        .pcard-cta svg {
+          transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .pcard-cta:hover svg { transform: translateX(3px); }
+
+
+/* Buyam Marketplace Animations */
+  @media (min-width: 560px) {
+          .pcard-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .pcard-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        }
+@layer utilities {
+ 
+
+        @keyframes cardReveal {
+          from { opacity: 0; transform: translateY(18px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes blinkIn {
+   0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+
+  @keyframes spinReverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .animate-spin-reverse {
+    animation: spinReverse 2s linear infinite;
+  }
+
+ 
+  
+.animate-blink {
+  animation: blinkIn 1.8s step-start infinite;
+}  
+   
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    /* background: linear-gradient(90deg, #e8e8e6 0%, #f5f5f3 50%, #e8e8e6 100%); */
+    background-size: 1000px 100%;
+  }
+  /* animate spin and pulse subtle */
+  .animate-spin-subtle {
+    animation: spin 3s infinite linear alternate-reverse;
+  }
+  .gradient-char {
+  @apply bg-gradient-to-r from-emerald-600 via-emerald-500 to-amber-600 bg-clip-text text-transparent;
+}
+
+
+/* mini loader */
+/* From Uiverse.io by shadowfax29 */ 
+.containe {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.loader {
+  width: 10px;
+  height: 30px;
+  left: var(--left);
+  border-radius: 10px 50px;
+  box-shadow: 0px 0px 5px black;
+  animation: dominos 1s ease infinite;
+}
+
+.loader:nth-child(1) {
+  --left: 80px;
+  animation-delay: 0.325s;
+  background-color: red;
+}
+
+.loader:nth-child(3) {
+  left: 60px;
+  animation-delay: 0.625s;
+  background-color: blue;
+}
+
+.loader:nth-child(5) {
+  animation-delay: 0.865s;
+  left: 40px;
+  background-color: green;
+}
+
+.loader:nth-child(2) {
+  --left: 70px;
+  animation-delay: 0.5s;
+  background-color: yellow;
+}
+
+.loader:nth-child(4) {
+  animation-delay: 0.74s;
+  left: 50px;
+  background-color: orange;
+}
+
+@keyframes dominos {
+  50% {
+    opacity: 0.7;
+  }
+
+  75% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
 }
