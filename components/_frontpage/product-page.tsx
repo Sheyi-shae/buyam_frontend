@@ -3,15 +3,19 @@ import FilterSidebar from '@/components/product/product-filter'
 import ProductGrid from '@/components/product/product-listing'
 import SearchBar from '@/components/product/search-bar'
 import { useSearchStore } from '@/stores/search-store'
+import { ProductListing } from '@/types/users'
 import { useDebounce } from '@/utils/debounce'
 import { useProductWithSuggestions, useQueryProducts } from '@/utils/query-products'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 
 type Mode = "default" | "suggestion" | "search";
  
 export default function ProductPage({ slug }: { slug: string }) {
   const [searchQuery, setSearchQuery] = useState("");
+   const [defaultProducts, setDefaultProducts] = useState<ProductListing[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<ProductListing[]>([]);
+  
     const [selectedState, setSelectedState] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
   const [submittedQuery, setSubmittedQuery] = useState("");
@@ -39,7 +43,10 @@ export default function ProductPage({ slug }: { slug: string }) {
   return data?.data || []; 
 }, [mode, data?.data]);
 
- 
+ useEffect(() => {
+       setDefaultProducts(activeData);
+       setFilteredProducts(activeData);
+    }, [activeData]);
  
   const handleSearch=()=>{
     setSubmittedQuery(searchQuery)
@@ -67,9 +74,15 @@ export default function ProductPage({ slug }: { slug: string }) {
           loading={isSuggestionsLoading}
         />
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
-          <FilterSidebar />
+          <FilterSidebar
+            defaultProducts={defaultProducts}
+            setFilteredProducts={setFilteredProducts}
+            mode='frontpage'
+          />
           <ProductGrid
-            products={activeData}
+            setDefaultProducts={setDefaultProducts}
+            
+            defaultProducts={activeData}
             isLoading={isLoading}
             paginationMeta={paginationMeta}
             page={page}

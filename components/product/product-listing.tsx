@@ -26,7 +26,7 @@ interface ProductGridProps {
   handlePreviousPage?:()=>void
   handleNextPage?: () => void
   setDefaultProducts: React.Dispatch<React.SetStateAction<ProductListing[]>>
-  queryParams:string
+  queryParams?:string
 }
 
 export const getConditionColor = (condition: string) => {
@@ -72,7 +72,6 @@ export default function ProductGrid({defaultProducts,queryParams, setDefaultProd
   return (
     <div className="lg:col-span-3">
       <ProductSorting
-        loading={isLoading}
       sortProductsByMostPopular={sortProductsByMostPopular}
       sortProductsByMostRecent={sortProductsByMostRecent}
       defaultProducts={defaultProducts}
