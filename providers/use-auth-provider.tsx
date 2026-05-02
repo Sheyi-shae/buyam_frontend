@@ -19,10 +19,14 @@ export function AuthProvider({ children, protection, msg = '' }: AuthProviderPro
   const { setUser } = useAuthStore();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const fullPath = searchParams.toString()
-    ? `${pathname}?${searchParams.toString()}`
+  // const fullPath = searchParams.toString()
+  //   ? `${pathname}?${searchParams.toString()}`
+  //   : pathname;
+  const fullPath =
+  typeof window !== "undefined"
+    ? window.location.pathname + window.location.search
     : pathname;
 
   // Sync user state with Zustand store (regardless of protection)

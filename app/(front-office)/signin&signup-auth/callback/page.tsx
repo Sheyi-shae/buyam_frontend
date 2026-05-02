@@ -1,19 +1,24 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useAuthStore } from "@/stores/auth-stores";
 import apiPrivate from "@/utils/api-private";
 import { toast } from "sonner";
 import { PageLoader } from "@/components/loading-spinners";
 
-export default function AuthCallback() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+
+  
+
+function AuthCallbackInner() {
+  
   const { setUser } = useAuthStore();
 
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const returnTo = searchParams.get("redirectTo") || "/";
-  
+
   useEffect(() => {
     let mounted = true;
 
@@ -37,8 +42,13 @@ export default function AuthCallback() {
       mounted = false;
     };
   }, []);
+  return null;
+}
 
+export default function AuthCallback() {
   return (
-    <PageLoader/>
+    <Suspense fallback={<PageLoader />}>
+      <AuthCallbackInner />
+    </Suspense>
   );
 }
