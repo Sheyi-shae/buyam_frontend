@@ -6,6 +6,7 @@ import { useAuthStore } from '@/stores/auth-stores'
 import { VendorProfileProps } from '@/types/users'
 import { useFetchPrivateData } from '@/utils/fetch-hooks'
 import { useMemo, useState } from 'react'
+export const dynamic = 'force-dynamic'
 
 
 export default function PrifilePage() {

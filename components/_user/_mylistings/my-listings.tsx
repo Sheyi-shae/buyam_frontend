@@ -2,7 +2,6 @@
 
 import { ProductCardSlide } from '@/components/animations/product-slider';
 import { PageLoader } from '@/components/loading-spinners';
-import { ListingCard } from '@/components/my-listings/listing-card';
 import { ListingFilters, SortOption } from '@/components/my-listings/listing-filters';
 import { ListingStatsDisplay } from '@/components/my-listings/listing-stats';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +12,7 @@ import { Listing, ListingStats } from '@/types/vendor';
 import { timeAgo } from '@/utils/date-format';
 import { useFetchPrivateData } from '@/utils/fetch-hooks';
 import { formatCurrency } from '@/utils/format-currency';
-import { ArrowRight, Clock, MapPin,UserCheck, Package, Plus, User2, Eye, Heart, MessageCircle } from 'lucide-react';
+import { ArrowRight, Clock, Eye, Heart, MapPin, MessageCircle, Package, Plus, User2 } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
@@ -97,7 +96,7 @@ export default function MyListings() {
 
     return result;
   }, [listings, selectedStatus, sortOption, searchQuery]);
-  console.log("Filtered listings:", filteredListings);
+  //console.log("Filtered listings:", filteredListings);
 
   const handleEdit = (listing: Listing) => {
     console.log('Edit listing:', listing);
