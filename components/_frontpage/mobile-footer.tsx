@@ -15,7 +15,7 @@ export function MobileFooter() {
     { href: '/', icon: Home, label: 'Home' },
     { href: '/categories', icon: Grid3x3, label: 'Categories' },
     { href: '/messages', icon: MessageCircle, label: 'Messages' },
-    { href: '/account', icon: User, label: 'Account' },
+    { href: '/my_profile', icon: User, label: 'Account' },
   ]
 
   return (
@@ -31,7 +31,7 @@ export function MobileFooter() {
           }`}
           title="Home"
         >
-          <Home size={24} strokeWidth={2} />
+          <Home className='w-6 h-6' strokeWidth={2} />
         </Link>
 
         {/* Categories */}
@@ -44,16 +44,16 @@ export function MobileFooter() {
           }`}
           title="Categories"
         >
-          <Grid3x3 size={24} strokeWidth={2} />
+          <Grid3x3 className='w-6 h-6' strokeWidth={2} />
         </Link>
 
         {/* Sell Button - Center, Larger, Distinctive */}
         <Link
           href="/sell"
-          className="flex items-center justify-center -mt-8 mb-2 w-16 h-16 rounded-full bg-amber-500 text-white shadow-lg hover:bg-green-700 active:scale-95 transition-all duration-200 hover:shadow-xl"
+          className="flex items-center justify-center -mt-8 mb-2 w-14 h-14 rounded-full bg-amber-500 text-white shadow-lg hover:bg-green-700 active:scale-95 transition-all duration-200 hover:shadow-xl"
           title="Post an Advert"
         >
-          <Plus size={28} strokeWidth={2.5} className=''/>
+          <Plus  strokeWidth={2.5} />
         </Link>
 
         {/* Messages */}
@@ -66,20 +66,20 @@ export function MobileFooter() {
           }`}
           title="Messages"
         >
-          <MessageCircle size={24} strokeWidth={2} />
+          <MessageCircle className='w-6 h-6' strokeWidth={2} />
         </Link>
 
         {/* Account */}
         <Link
-          href="/account"
+          href="/my_profile"
           className={`flex flex-col items-center justify-center w-14 h-14 rounded-lg transition-all duration-300 ${
-            isActive('/account') 
+            isActive('/my_profile') 
               ? 'bg-green-50 text-green-600' 
               : 'text-gray-600 hover:text-gray-900'
           }`}
           title="Account"
         >
-          <User size={24} strokeWidth={2} />
+          <User className='w-6 h-6' strokeWidth={2} />
         </Link>
       </nav>
     </div>

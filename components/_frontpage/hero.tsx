@@ -32,11 +32,11 @@ export default function Hero() {
 
   return (
     <div className="text-center">
-      <h1 className="text-4xl md:text-6xl font-bold gradient-char mb-6 leading-tight">
+      <h1 className="text-3xl md:text-6xl font-bold gradient-char mb-4  md:leading-tight">
         Discover Everything
         <span
   ref={textRef}
-  className="block text-gray-900 cat-heading"
+  className="block px-16 md:px-0 text-gray-900 cat-heading"
 >
   From Trusted Vendors
 </span>
@@ -44,7 +44,7 @@ export default function Hero() {
 
      
 
-      <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+      <p className="text-base md:text-xl text-gray-600 mb-4 max-w-lg md:max-w-3xl mx-auto">
         Shop from thousands of verified vendors in one place.
       </p>
 

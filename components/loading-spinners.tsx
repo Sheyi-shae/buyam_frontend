@@ -107,4 +107,39 @@ export function PageLoader() {
 
 
 
+interface EmptyStateProps{
+  title: string
+  desc?:string
+}
+export function EmptyStateLoader({title,desc}:EmptyStateProps) {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
+      <div className="flex flex-col items-center gap-8">
+        {/* Animated Loading Circle */}
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 rounded-full border-2 border-muted-foreground/20" />
+          <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary border-r-primary animate-spin" />
+          
+          {/* Inner pulsing circle */}
+          <div className="absolute inset-2 rounded-full bg-primary/10 animate-pulse" />
+        </div>
+
+        {/* Loading text with animation */}
+        <div className="flex flex-col items-center gap-3">
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+          <div className="flex gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0s' }} />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0.2s' }} />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0.4s' }} />
+          </div>
+        </div>
+
+        {/* Optional subtitle */}
+        <p className="text-sm text-muted-foreground text-center max-w-xs">
+           Please wait a moment.
+        </p>
+      </div>
+    </div>
+  )
+}
 

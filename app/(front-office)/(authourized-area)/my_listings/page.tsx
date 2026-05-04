@@ -6,9 +6,9 @@ export const dynamic = 'force-dynamic'
 export default function page() {
   return (
     <div>
-      <Suspense fallback={<PageLoader/>}>
+    
         <MyListings/>
-      </Suspense>
+      
     </div>
   )
 }

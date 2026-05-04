@@ -23,7 +23,7 @@ export default function ProfileTab({ activeTab, setActiveTab, vendor }: TabsProp
         { id: "reviews", label: "Reviews", icon: Star },
         { id: "profile", label: "Profile", icon: User},
         { id: "sold", label: "Sold-Items", icon: ShoppingBasket },
-        { id: "messages", label: "Messages", icon: MessageCircleIcon },
+       
     ]
     
   const vendorProducts = vendor?.products as ProductListing[]
@@ -64,7 +64,7 @@ export default function ProfileTab({ activeTab, setActiveTab, vendor }: TabsProp
           {activeTab === "reviews" && <ProfileReviews vendor={vendorReviews} vendorPublicId={vendor.publicId}  />}
           {activeTab === "profile" && <ProfileDisplay user={vendor} vendorProducts={vendorProducts} />}
           {activeTab === "sold" && <ProfileStore products={soldItems}  />}
-          {activeTab === "messages" && <MessageLayout />}
+    
            
          </div>
        </div>   

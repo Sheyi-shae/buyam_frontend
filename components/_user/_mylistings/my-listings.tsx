@@ -1,7 +1,8 @@
 'use client';
 
+import { EmptyItem } from '@/components/_frontpage/empty-item';
 import { ProductCardSlide } from '@/components/animations/product-slider';
-import { PageLoader } from '@/components/loading-spinners';
+import { EmptyStateLoader, PageLoader } from '@/components/loading-spinners';
 import { ListingFilters, SortOption } from '@/components/my-listings/listing-filters';
 import { ListingStatsDisplay } from '@/components/my-listings/listing-stats';
 import { Badge } from '@/components/ui/badge';
@@ -12,9 +13,11 @@ import { Listing, ListingStats } from '@/types/vendor';
 import { timeAgo } from '@/utils/date-format';
 import { useFetchPrivateData } from '@/utils/fetch-hooks';
 import { formatCurrency } from '@/utils/format-currency';
-import { ArrowRight, Clock, Eye, Heart, MapPin, MessageCircle, Package, Plus, User2 } from 'lucide-react';
+import { ArrowRight, Clock, Eye, Heart, MapPin, MessageCircle, Package, PackageOpen, Plus, User2 } from 'lucide-react';
 import Link from 'next/link';
+import router from 'next/router';
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -34,6 +37,7 @@ export default function MyListings() {
     if (!user) return [];
     return user.products as ProductListing[] || [];
   }, [user]);
+  const router = useRouter()
 
 
 
@@ -109,7 +113,9 @@ export default function MyListings() {
   };
 
     if (isLoading) {
-        return <PageLoader/>
+      return <EmptyStateLoader
+      title='Preparing your listings'
+      />
     }
   return (
     <div className="min-h-screen  bg-gradient-to-br from-emerald-50 via-white to-amber-50 py-24 px-4 sm:px-6 lg:px-8">
@@ -135,23 +141,18 @@ export default function MyListings() {
           </div>
 
           {filteredListings.length === 0 ? (
-            <Card className="border-dashed border-2">
-              <CardContent className="p-12 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-                  <Package className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No listings found</h3>
-                <p className="text-gray-600 mb-6">
-                  {searchQuery
+             <EmptyItem
+                            icon={PackageOpen}
+                            title="No listings found"
+                            description= {searchQuery
                     ? 'Try adjusting your search or filters'
-                    : 'Start by posting your first item to get started'}
-                </p>
-                <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700">
-                  <Plus className="w-4 h-4" />
-                  Post Your First Item
-                </Button>
-              </CardContent>
-            </Card>
+                : 'Start by posting your first item to get started'}
+              action={{
+           label: "Post item",
+         onClick: () => router.push("/sell")
+            }}
+                          />
+           
           ) : (
             <div>
               <div className="flex items-center justify-between mb-4">

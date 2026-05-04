@@ -21,28 +21,29 @@ export default function CategorySections({ category,isLoading }: CategorySection
     
         <SectionReveal>
           <section
-            className="cat-section"
-            style={{ background: 'var(--background, #fafaf8)', marginTop: '2.5rem', paddingBottom: '0.5rem' }}
-          >
-            <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
+        className="cat-section mt-4">
+        
 
-             
-          <HomeTitleHeader title="Explore Categories" desc="Browse by category" link={true}/>
-          
+
+        <div>
+
+          <div className='grid place-items-center'> 
+          <HomeTitleHeader title="Explore Categories" desc="Browse by category" />
+          </div>  
           {isLoading ? (
           
              <div className="cat-grid">
-      {Array.from({ length: 8 }).map((_, i) => (
-        <div key={i} className="cat-card">
-          
-          <div className="cat-icon-wrap">
-            <Skeleton className="h-[26px] w-[26px] rounded-full" />
-          </div>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="cat-card">
+                  
+                  <div className="cat-icon-wrap">
+                    <Skeleton className="h-[26px] w-[26px] rounded-full" />
+                  </div>
 
-          <Skeleton className="h-3 w-3/4 mt-2" />
+                  <Skeleton className="h-3 w-3/4 mt-2" />
 
-          <Skeleton className="h-3 w-10 mt-2 rounded-full" />
-          
+                  <Skeleton className="h-3 w-10 mt-2 rounded-full" />
+                  
         </div>
       ))}
     </div>

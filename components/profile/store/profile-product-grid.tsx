@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button"
 import { ProductListing } from "@/types/users"
 import { timeAgo } from "@/utils/date-format"
 import { formatCurrency } from "@/utils/format-currency"
-import { Clock, MapPin, UserCheck } from "lucide-react"
+import { Clock, LayoutList, MapPin, UserCheck } from "lucide-react"
 import { ProductCardSlide } from "@/components/animations/product-slider"
 import Link from "next/link"
 import ProductSorting from "@/components/product/product-sorting"
 import MoreOptions from "./more-options"
+import { EmptyItem } from "@/components/_frontpage/empty-item"
 
 
 interface ProductGridProps {
@@ -57,7 +58,11 @@ export default function ProfileProductGrid({defaultProducts, setDefaultProducts,
       />
      
       {defaultProducts.length === 0 && (
-        <p className="text-center text-muted-foreground">No items found.</p>
+        <EmptyItem
+                       icon={LayoutList}
+                       title="No items available"
+                       description="There are currently no active item to display in your store"
+                     />
 
       )}
       
